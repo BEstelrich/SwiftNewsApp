@@ -28,7 +28,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
   
   
   private func configure() {
-    self.layer.cornerRadius  = 25
+    self.layer.cornerRadius  = 10
   }
   
 }
