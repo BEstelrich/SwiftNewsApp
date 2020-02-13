@@ -42,17 +42,6 @@ class ArticlesViewController: UIViewController {
       }
   }
   
-  func downloadImage(from stringUrl: String?) -> UIImage? {
-    guard let url = stringUrl,
-      url != "self",
-      url != "default",
-      let imageUrl = NSURL(string: url),
-      let data = NSData(contentsOf: imageUrl as URL)
-      else { return nil }
-    
-    return UIImage(data: data as Data)
-  }
-  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let detailsViewController = segue.destination as? ArticleDetailsViewController {
@@ -86,7 +75,7 @@ extension ArticlesViewController: UICollectionViewDataSource, UICollectionViewDe
     let article = articles[indexPath.row]
     
     cell.articleTitleLabel.text = article.title
-    cell.articleImageView.image = downloadImage(from: article.thumbnailLink)
+    cell.articleImageView.downloadImage(fromURL: article.thumbnailLink!)
     
     return cell
   }

@@ -60,7 +60,9 @@ class NetworkManager {
       return
     }
 
-    guard let url = URL(string: urlString) else {
+    guard let url = URL(string: urlString),
+      urlString.contains("http")
+      else {
       completed(nil)
       return
     }

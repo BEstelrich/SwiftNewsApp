@@ -12,7 +12,7 @@ import UIKit
 class ArticleCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet weak var articleTitleLabel: UILabel!
-  @IBOutlet weak var articleImageView: UIImageView!
+  @IBOutlet weak var articleImageView: ThumbnailImageView!
   
   
   override init(frame: CGRect) {
@@ -28,7 +28,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
   
   
   private func configure() {
-    self.layer.cornerRadius  = 30
+    self.layer.cornerRadius  = 25
   }
   
 }
