@@ -8,7 +8,7 @@
 
 import UIKit
 
-//@IBDesignable
+@IBDesignable
 class ArticleCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet weak var articleTitleLabel: UILabel!
@@ -26,14 +26,9 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     configure()
   }
   
-//  override func prepareForInterfaceBuilder() {
-//    super.prepareForInterfaceBuilder()
-//    configure()
-//  }
-  
   
   private func configure() {
-    self.layer.cornerRadius  = 25
+    self.layer.cornerRadius  = 30
   }
   
 }
