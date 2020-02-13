@@ -18,7 +18,7 @@ class NetworkManager {
   private init() {}
   
   
-  func getArticles(completed: @escaping (Result<RedditJSON, AppError>) -> Void) {
+  func getArticles(completed: @escaping (Result<APIData, AppError>) -> Void) {
     guard let url = URL(string: baseURL) else {
       completed(.failure(.invalidURL))
       return
@@ -42,7 +42,7 @@ class NetworkManager {
       
       do {
         let decoder  = JSONDecoder()
-        let articles = try decoder.decode(RedditJSON.self, from: data)
+        let articles = try decoder.decode(APIData.self, from: data)
         completed(.success(articles))
       } catch {
         completed(.failure(.invalidData))

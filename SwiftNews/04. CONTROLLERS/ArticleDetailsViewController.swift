@@ -14,7 +14,7 @@ class ArticleDetailsViewController: UIViewController {
   @IBOutlet weak var articleBodyTextView: UITextView!
   
   var articleImage: UIImage?
-  var articleBody: String = ""
+  var articleBody: String?
   
   
   override func viewDidLoad() {

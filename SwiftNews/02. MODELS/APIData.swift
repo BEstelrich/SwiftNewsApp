@@ -1,5 +1,5 @@
 //
-//  Article.swift
+//  APIData.swift
 //  SwiftNews
 //
 //  Created by BES on 2020-02-13.
@@ -8,32 +8,40 @@
 
 import Foundation
 
-struct RedditJSON: Codable {
+struct APIData: Codable {
   let data: ArticleData
 }
 
 
 struct ArticleData: Codable {
-  let children: [Child]
+  let articles: [Child]
+  
+  enum CodingKeys: String, CodingKey {
+    case articles = "children"
+  }
 }
 
 
 struct Child: Codable {
-  let data: ChildData
+  let details: ChildData
+  
+  enum CodingKeys: String, CodingKey {
+    case details = "data"
+  }
 }
 
 
 struct ChildData: Codable {
   let title: String
-  let selftext: String
-  let thumbnail: String?
+  let body: String
+  let thumbnailLink: String?
   let thumbnailHeight: Int?
   let thumbnailWidth: Int?
 
   enum CodingKeys: String, CodingKey {
     case title
-    case selftext
-    case thumbnail
+    case body            = "selftext"
+    case thumbnailLink   = "thumbnail"
     case thumbnailHeight = "thumbnail_height"
     case thumbnailWidth  = "thumbnail_width"
   }

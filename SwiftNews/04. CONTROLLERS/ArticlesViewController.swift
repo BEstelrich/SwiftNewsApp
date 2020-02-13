@@ -12,7 +12,9 @@ class ArticlesViewController: UIViewController {
   
   @IBOutlet weak var articlesCollectionView: UICollectionView!
   
-  var articles: [Child] = [] {
+  typealias Article = ChildData
+  
+  var articles: [Article] = [] {
     didSet {
       DispatchQueue.main.async { self.articlesCollectionView.reloadData() }
     }
@@ -21,8 +23,8 @@ class ArticlesViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    getArticles()
     setupArticlesCollectionView()
+    getArticles()
   }
   
   
@@ -31,10 +33,8 @@ class ArticlesViewController: UIViewController {
           guard let self = self else { return }
           
           switch result {
-          case .success(let redditJSON):
-            for article in redditJSON.data.children {
-              self.articles.append(article)
-            }
+          case .success(let apiData):
+            apiData.data.articles.forEach { self.articles.append($0.details) }
             
           case .failure(let error):
               print(error)
@@ -58,8 +58,8 @@ class ArticlesViewController: UIViewController {
     if let detailsViewController = segue.destination as? ArticleDetailsViewController {
       if let cell = sender as? ArticleCollectionViewCell,
         let indexPath = self.articlesCollectionView.indexPath(for: cell) {
-        detailsViewController.navigationItem.title = articles[indexPath.row].data.title
-        detailsViewController.articleBody          = articles[indexPath.row].data.selftext
+        detailsViewController.navigationItem.title = articles[indexPath.row].title
+        detailsViewController.articleBody          = articles[indexPath.row].body
         detailsViewController.articleImage         = cell.articleImageView.image
       }
     }
@@ -85,8 +85,8 @@ extension ArticlesViewController: UICollectionViewDataSource, UICollectionViewDe
     guard let cell = articlesCollectionView.dequeueReusableCell(withReuseIdentifier: Identifier.Cell.articleCollectionViewCell, for: indexPath) as? ArticleCollectionViewCell else { return UICollectionViewCell() }
     let article = articles[indexPath.row]
     
-    cell.articleTitleLabel.text = article.data.title
-    cell.articleImageView.image = downloadImage(from: article.data.thumbnail)
+    cell.articleTitleLabel.text = article.title
+    cell.articleImageView.image = downloadImage(from: article.thumbnailLink)
     
     return cell
   }
