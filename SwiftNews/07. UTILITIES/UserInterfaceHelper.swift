@@ -12,37 +12,19 @@ enum UserInterfaceHelper {
   
   typealias Article = ChildData
   
+  
   static func calculateCellSize(for articles: [Article], in collectionView: UICollectionView, with indexPath: IndexPath) -> CGSize {
-    let isArticleWithImage: Bool     = articles[indexPath.row].thumbnailWidth != nil ? true : false
+    let article: Article       = articles[indexPath.row]
+    let hasThumbnailTheArticle = article.thumbnailWidth != nil ? true : false
     
-//    let padding: CGFloat             = 15
-    let collectionViewWidth: CGFloat = collectionView.bounds.size.width
+    let cellWithoutThumbnail   = calculateCellSizeWithoutThumbnail(for: article, in: collectionView)
+    let cellWithThumbnail      = calculateCellSizeWithThumbnail(for: article, in: collectionView)
     
-    let oneLineHeight: CGFloat        = 35
-    let twoLinesHeight: CGFloat       = 55
-    let threeLineHeight: CGFloat      = 75
-    
-    let thumbnailHeight: CGFloat      = CGFloat(articles[indexPath.item].thumbnailHeight ?? 0)
-    let thumbnailWidth: CGFloat       = CGFloat(articles[indexPath.item].thumbnailWidth ?? 0)
-    let thumbnailAspectRatio: CGFloat = thumbnailHeight/thumbnailWidth
-    
-    let titleWidth                    = calculateLabelSize(for: articles[indexPath.row].title)
-    
-    let onlyTextWidth                 = titleWidth < collectionViewWidth ? titleWidth : collectionViewWidth
-    
-    let onlyTextHeight: CGFloat = titleWidth < collectionViewWidth ?
-      oneLineHeight : (titleWidth <= collectionViewWidth * 2) ?
-        twoLinesHeight : threeLineHeight
-    
-    let textAndImageWidth: CGFloat = collectionViewWidth
-    let textAndImageHeight: CGFloat = textAndImageWidth * thumbnailAspectRatio
-    
-    return isArticleWithImage ? CGSize(width: textAndImageWidth, height: textAndImageHeight) :
-    CGSize(width: onlyTextWidth, height: CGFloat(onlyTextHeight))
+    return hasThumbnailTheArticle ? cellWithThumbnail : cellWithoutThumbnail
   }
   
   
-  private static func calculateLabelSize(for string: String) -> CGFloat {
+  private static func calculteWidthFromLabel(_ string: String) -> CGFloat {
     let label = UILabel(frame: .zero)
     label.text = string
     label.sizeToFit()
@@ -50,13 +32,31 @@ enum UserInterfaceHelper {
   }
   
   
-  private static func calculateTitleHeight(for title: String, in collectionView: UICollectionView) -> CGFloat {
-    let titleWidth = calculateLabelSize(for: title)
-    let numberOfLines = titleWidth / collectionView.bounds.size.width
-    let defaultTitleSize: CGFloat = 35
-    let titleHeight = defaultTitleSize + ((numberOfLines - 1) * 20)
+  private static func calculateCellSizeWithoutThumbnail(for article: Article, in collectionView: UICollectionView) -> CGSize {
+    let titleWidth                  = calculteWidthFromLabel(article.title)
+    let collectionViewWidth         = collectionView.bounds.size.width
+    let padding: CGFloat            = 10
+    let titleWithPadding: CGFloat   = titleWidth + (padding * 2)
+    let additionalTitleLineHeight: CGFloat = 15
     
-    return titleHeight
+    let cellWidth                   = titleWithPadding <= collectionViewWidth ? titleWithPadding : collectionViewWidth
+    
+    let numberOfLines               = (titleWithPadding / collectionViewWidth).rounded(.up)
+    let minimumTitleHeight: CGFloat = 40
+    let cellHeight                  = minimumTitleHeight + ((numberOfLines - 1) * additionalTitleLineHeight)
+    
+    return CGSize(width: cellWidth, height: cellHeight)
+  }
+  
+  
+  private static func calculateCellSizeWithThumbnail(for article: Article, in collectionView: UICollectionView) -> CGSize {
+    let thumbnailHeight: CGFloat      = CGFloat(article.thumbnailHeight ?? 0)
+    let thumbnailWidth: CGFloat       = CGFloat(article.thumbnailWidth ?? 0)
+    let thumbnailAspectRatio: CGFloat = thumbnailHeight / thumbnailWidth
+
+    let minimumCellSize               = calculateCellSizeWithoutThumbnail(for: article, in: collectionView)
+    
+    return CGSize(width: minimumCellSize.width, height: minimumCellSize.height + (minimumCellSize.width * thumbnailAspectRatio))
   }
   
 }
