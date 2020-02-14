@@ -20,6 +20,7 @@
 		C969164323F49AD9008BFAD1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969164223F49AD9008BFAD1 /* Constants.swift */; };
 		C969164623F49B9D008BFAD1 /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C969164523F49B9D008BFAD1 /* ArticleCollectionViewCell.swift */; };
 		C9857FE623F5E45900699418 /* ThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9857FE523F5E45900699418 /* ThumbnailImageView.swift */; };
+		C9C229B723F7406B0088691D /* UserInterfaceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C229B623F7406B0088691D /* UserInterfaceHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C969164223F49AD9008BFAD1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C969164523F49B9D008BFAD1 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9857FE523F5E45900699418 /* ThumbnailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailImageView.swift; sourceTree = "<group>"; };
+		C9C229B623F7406B0088691D /* UserInterfaceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				C969164223F49AD9008BFAD1 /* Constants.swift */,
 				C9569EC823F584590074B266 /* AppError.swift */,
+				C9C229B623F7406B0088691D /* UserInterfaceHelper.swift */,
 			);
 			path = "07. UTILITIES";
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				C9569EC323F582E00074B266 /* NetworkManager.swift in Sources */,
 				C9569EC523F583680074B266 /* APIData.swift in Sources */,
 				C969164623F49B9D008BFAD1 /* ArticleCollectionViewCell.swift in Sources */,
+				C9C229B723F7406B0088691D /* UserInterfaceHelper.swift in Sources */,
 				C969164123F49AA0008BFAD1 /* ArticleDetailsViewController.swift in Sources */,
 				C969162823F483A1008BFAD1 /* SceneDelegate.swift in Sources */,
 			);

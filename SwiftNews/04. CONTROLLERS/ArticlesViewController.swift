@@ -82,26 +82,7 @@ extension ArticlesViewController: UICollectionViewDelegate, UICollectionViewData
   
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let label = UILabel(frame: .zero)
-    label.text = articles[indexPath.row].title
-    label.sizeToFit()
-    let textWidth: CGFloat = label.frame.width
-    
-    let collectionViewWidth: CGFloat = articlesCollectionView.bounds.size.width
-    
-    let onlyTextWidth = textWidth < collectionViewWidth ? textWidth : collectionViewWidth
-    let onlyTextHeight: CGFloat = textWidth < collectionViewWidth ? 35 : 55
-    
-
-    let imageHeight: CGFloat = CGFloat(articles[indexPath.item].thumbnailHeight ?? 0)
-
-    let textAndImageHeight: CGFloat = imageHeight + onlyTextHeight
-
-    if articles[indexPath.row].thumbnailWidth != nil {
-      return CGSize(width: onlyTextWidth, height: textAndImageHeight)
-    } else {
-      return CGSize(width: onlyTextWidth, height: CGFloat(onlyTextHeight))
-    }
+    UserInterfaceHelper.calculateCellSize(for: articles, in: articlesCollectionView, with: indexPath)
   }
 
 }
