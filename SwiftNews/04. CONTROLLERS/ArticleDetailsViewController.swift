@@ -10,10 +10,10 @@ import UIKit
 
 class ArticleDetailsViewController: UIViewController {
   
-  @IBOutlet weak var articleImageView: UIImageView!
+  @IBOutlet weak var articleThumbnailImageView: UIImageView!
   @IBOutlet weak var articleBodyTextView: UITextView!
   
-  var articleImage: UIImage?
+  var articleThumbnail: UIImage?
   var articleBody: String?
   
   
@@ -24,8 +24,9 @@ class ArticleDetailsViewController: UIViewController {
   
   
   func configureViewController() {
-    articleBodyTextView.text = articleBody
-    articleImageView.image   = articleImage
+    articleBodyTextView.text           = articleBody
+    articleThumbnailImageView.isHidden = articleThumbnail == nil ? true : false
+    articleThumbnailImageView.image    = articleThumbnail
   }
   
 }

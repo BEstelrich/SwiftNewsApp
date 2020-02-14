@@ -26,6 +26,7 @@ enum UserInterfaceHelper {
   
   private static func calculteWidthFromLabel(_ string: String) -> CGFloat {
     let label = UILabel(frame: .zero)
+    label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     label.text = string
     label.sizeToFit()
     return label.frame.width
@@ -33,19 +34,20 @@ enum UserInterfaceHelper {
   
   
   private static func calculateCellSizeWithoutThumbnail(for article: Article, in collectionView: UICollectionView) -> CGSize {
-    let titleWidth                  = calculteWidthFromLabel(article.title)
-    let collectionViewWidth         = collectionView.bounds.size.width
-    let padding: CGFloat            = 10
-    let titleWithPadding: CGFloat   = titleWidth + (padding * 2)
-    let additionalTitleLineHeight: CGFloat = 15
+    let titleWidth                    = calculteWidthFromLabel(article.title)
+    let collectionViewWidth           = collectionView.bounds.size.width
     
-    let cellWidth                   = titleWithPadding <= collectionViewWidth ? titleWithPadding : collectionViewWidth
+    let paddingWidth: CGFloat         = 10
+    let singleLineHeight: CGFloat     = 40
+    let additionalLineHeight: CGFloat = 15
     
-    let numberOfLines               = (titleWithPadding / collectionViewWidth).rounded(.up)
-    let minimumTitleHeight: CGFloat = 40
-    let cellHeight                  = minimumTitleHeight + ((numberOfLines - 1) * additionalTitleLineHeight)
+    let titleWidthAndPadding: CGFloat = titleWidth + (paddingWidth * 2)
+    let baseCellWidth                 = titleWidthAndPadding <= collectionViewWidth ? titleWidthAndPadding : collectionViewWidth
     
-    return CGSize(width: cellWidth, height: cellHeight)
+    let numberOfLines                 = (titleWidthAndPadding / collectionViewWidth).rounded(.up)
+    let baseCellHeight                = singleLineHeight + ((numberOfLines - 1) * additionalLineHeight)
+    
+    return CGSize(width: baseCellWidth, height: baseCellHeight)
   }
   
   
@@ -54,9 +56,9 @@ enum UserInterfaceHelper {
     let thumbnailWidth: CGFloat       = CGFloat(article.thumbnailWidth ?? 0)
     let thumbnailAspectRatio: CGFloat = thumbnailHeight / thumbnailWidth
 
-    let minimumCellSize               = calculateCellSizeWithoutThumbnail(for: article, in: collectionView)
+    let baseCellSize                  = calculateCellSizeWithoutThumbnail(for: article, in: collectionView)
     
-    return CGSize(width: minimumCellSize.width, height: minimumCellSize.height + (minimumCellSize.width * thumbnailAspectRatio))
+    return CGSize(width: baseCellSize.width, height: baseCellSize.height + (baseCellSize.width * thumbnailAspectRatio))
   }
   
 }

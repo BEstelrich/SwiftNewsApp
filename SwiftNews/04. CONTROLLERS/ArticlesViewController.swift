@@ -49,7 +49,7 @@ class ArticlesViewController: UIViewController {
         let indexPath = self.articlesCollectionView.indexPath(for: cell) {
         detailsViewController.navigationItem.title = articles[indexPath.row].title
         detailsViewController.articleBody          = articles[indexPath.row].body
-        detailsViewController.articleImage         = cell.articleImageView.image
+        detailsViewController.articleThumbnail         = cell.articleImageView.image
       }
     }
   }
