@@ -28,6 +28,7 @@ class ArticlesViewController: UIViewController {
   }
   
   
+  /// Fetches articles from the NetworkManager singleton and appends them to the local instance of the articles array.
   func getArticles() {
       NetworkManager.shared.getArticles { [weak self] result in
           guard let self = self else { return }

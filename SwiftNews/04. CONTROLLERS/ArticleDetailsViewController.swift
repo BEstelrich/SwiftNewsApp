@@ -23,6 +23,7 @@ class ArticleDetailsViewController: UIViewController {
   }
   
   
+  /// This method configures the IBOutlets and hides the image when it's nil.
   func configureViewController() {
     articleBodyTextView.text           = articleBody
     articleThumbnailImageView.isHidden = articleThumbnail == nil ? true : false

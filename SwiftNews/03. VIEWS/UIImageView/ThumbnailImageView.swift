@@ -20,6 +20,7 @@ class ThumbnailImageView: UIImageView {
   }
   
   
+  /// Fetches the article's thumbnail from the NetworkManager singleton and assigns it to the ImageView cell.
   func downloadImage(fromURL url: String) {
     NetworkManager.shared.downloadImage(from: url) { [weak self] image in
       guard let self = self else { return }

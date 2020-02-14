@@ -13,6 +13,11 @@ enum UserInterfaceHelper {
   typealias Article = ChildData
   
   
+  /// This method calculates the cell size based on the title lenght.
+  /// - Parameters:
+  ///   - articles: articles array fetched from the Reddit API.
+  ///   - collectionView: the CollectionView where we want to calculate our cells.
+  ///   - indexPath: the respective IndexPath on the CollectionView.
   static func calculateCellSize(for articles: [Article], in collectionView: UICollectionView, with indexPath: IndexPath) -> CGSize {
     let article: Article       = articles[indexPath.row]
     let hasThumbnailTheArticle = article.thumbnailWidth != nil ? true : false
@@ -24,6 +29,8 @@ enum UserInterfaceHelper {
   }
   
   
+  /// Takes all string characters and returns a width according to the selected font.
+  /// - Parameter string: the string where the lenght is going to be calculated.
   private static func calculteWidthFromLabel(_ string: String) -> CGFloat {
     let label = UILabel(frame: .zero)
     label.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
@@ -33,6 +40,10 @@ enum UserInterfaceHelper {
   }
   
   
+  /// Calculates the cell size on the non thumbnail scenario.
+  /// - Parameters:
+  ///   - article: the article where the cell's title will be extracted from.
+  ///   - collectionView: the CollectionView where we want to calculate our cells.
   private static func calculateCellSizeWithoutThumbnail(for article: Article, in collectionView: UICollectionView) -> CGSize {
     let titleWidth                    = calculteWidthFromLabel(article.title)
     let collectionViewWidth           = collectionView.bounds.size.width
@@ -51,6 +62,10 @@ enum UserInterfaceHelper {
   }
   
   
+  /// Calculates the cell size on the scenario where there is thumbnail on the cell.
+  /// - Parameters:
+  ///   - article: the article where the cell's title will be extracted from.
+  ///   - collectionView: the CollectionView where we want to calculate our cells.
   private static func calculateCellSizeWithThumbnail(for article: Article, in collectionView: UICollectionView) -> CGSize {
     let thumbnailHeight: CGFloat      = CGFloat(article.thumbnailHeight ?? 0)
     let thumbnailWidth: CGFloat       = CGFloat(article.thumbnailWidth ?? 0)

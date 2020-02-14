@@ -18,6 +18,8 @@ class NetworkManager {
   private init() {}
   
   
+  /// Fetches the API for articles and returns an APIData object or and AppError depending whether fetching is successful or not.
+  /// - Parameter completed: that's the completion handler where the method returns.
   func getArticles(completed: @escaping (Result<APIData, AppError>) -> Void) {
     guard let url = URL(string: baseURL) else {
       completed(.failure(.invalidURL))
@@ -52,6 +54,11 @@ class NetworkManager {
   }
   
   
+  
+  /// Fetches the API for thumbnails from an article string an APIData object or and AppError depending whether fetching is successful or not.
+  /// - Parameters:
+  ///   - urlString: the string found in the article details.
+  ///   - completed: that's the completion handler where the method returns.
   func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
     let cacheKey = NSString(string: urlString)
 
