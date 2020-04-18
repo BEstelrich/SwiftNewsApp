@@ -13,6 +13,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet weak var articleTitleLabel: UILabel!
   @IBOutlet weak var articleImageView: ThumbnailImageView!
+  @IBOutlet weak var articleAuthor: UILabel!
   
   
   override init(frame: CGRect) {

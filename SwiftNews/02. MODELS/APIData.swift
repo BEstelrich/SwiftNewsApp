@@ -37,6 +37,7 @@ struct ChildData: Codable {
   let thumbnailLink: String?
   let thumbnailHeight: Int?
   let thumbnailWidth: Int?
+  let author: String
 
   enum CodingKeys: String, CodingKey {
     case title
@@ -44,6 +45,7 @@ struct ChildData: Codable {
     case thumbnailLink   = "thumbnail"
     case thumbnailHeight = "thumbnail_height"
     case thumbnailWidth  = "thumbnail_width"
+    case author
   }
 
 }

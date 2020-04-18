@@ -12,8 +12,10 @@ class ArticleDetailsViewController: UIViewController {
   
   @IBOutlet weak var articleThumbnailImageView: UIImageView!
   @IBOutlet weak var articleBodyTextView: UITextView!
+  @IBOutlet weak var articleAuthorLabel: UILabel!
   
   var articleThumbnail: UIImage?
+  var articleAuthor: String?
   var articleBody: String?
   
   
@@ -26,6 +28,7 @@ class ArticleDetailsViewController: UIViewController {
   /// This method configures the IBOutlets and hides the image when it's nil.
   func configureViewController() {
     articleBodyTextView.text           = articleBody
+    articleAuthorLabel.text            = articleAuthor
     articleThumbnailImageView.isHidden = articleThumbnail == nil ? true : false
     articleThumbnailImageView.image    = articleThumbnail
   }

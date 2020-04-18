@@ -42,14 +42,17 @@ class NetworkManager {
         return
       }
       
-      do {
-        let decoder  = JSONDecoder()
-        let articles = try decoder.decode(APIData.self, from: data)
-        completed(.success(articles))
-      } catch {
-        completed(.failure(.invalidData))
+      DispatchQueue.main.async {
+        do {
+          let decoder  = JSONDecoder()
+          let articles = try decoder.decode(APIData.self, from: data)
+          completed(.success(articles))
+        } catch {
+          completed(.failure(.invalidData))
+        }
       }
     }
+    
     task.resume()
   }
   
@@ -86,7 +89,7 @@ class NetworkManager {
       }
 
       self.cache.setObject(image, forKey: cacheKey)
-      completed(image)
+      DispatchQueue.main.async { completed(image) }
     }
 
     task.resume()

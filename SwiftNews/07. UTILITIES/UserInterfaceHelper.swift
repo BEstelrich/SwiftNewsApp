@@ -49,14 +49,14 @@ enum UserInterfaceHelper {
     let collectionViewWidth           = collectionView.bounds.size.width
     
     let paddingWidth: CGFloat         = 10
-    let singleLineHeight: CGFloat     = 40
-    let additionalLineHeight: CGFloat = 15
+    let singleLineHeight: CGFloat     = 55
+    let additionalLineHeight: CGFloat = 14
     
     let titleWidthAndPadding: CGFloat = titleWidth + (paddingWidth * 2)
-    let baseCellWidth                 = titleWidthAndPadding <= collectionViewWidth ? titleWidthAndPadding : collectionViewWidth
+    let baseCellWidth: CGFloat        = titleWidthAndPadding <= collectionViewWidth ? titleWidthAndPadding : collectionViewWidth
     
-    let numberOfLines                 = (titleWidthAndPadding / collectionViewWidth).rounded(.up)
-    let baseCellHeight                = singleLineHeight + ((numberOfLines - 1) * additionalLineHeight)
+    let numberOfLines: CGFloat        = (titleWidthAndPadding / collectionViewWidth).rounded(.up)
+    let baseCellHeight: CGFloat       = singleLineHeight + ((numberOfLines - 1) * additionalLineHeight)
     
     return CGSize(width: baseCellWidth, height: baseCellHeight)
   }
@@ -71,7 +71,7 @@ enum UserInterfaceHelper {
     let thumbnailWidth: CGFloat       = CGFloat(article.thumbnailWidth ?? 0)
     let thumbnailAspectRatio: CGFloat = thumbnailHeight / thumbnailWidth
 
-    let baseCellSize                  = calculateCellSizeWithoutThumbnail(for: article, in: collectionView)
+    let baseCellSize: CGSize          = calculateCellSizeWithoutThumbnail(for: article, in: collectionView)
     
     return CGSize(width: baseCellSize.width, height: baseCellSize.height + (baseCellSize.width * thumbnailAspectRatio))
   }
