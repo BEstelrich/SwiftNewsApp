@@ -37,7 +37,7 @@
 		C969164223F49AD9008BFAD1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C969164523F49B9D008BFAD1 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9857FE523F5E45900699418 /* ThumbnailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailImageView.swift; sourceTree = "<group>"; };
-		C9C229B623F7406B0088691D /* UserInterfaceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceHelper.swift; sourceTree = "<group>"; };
+		C9C229B623F7406B0088691D /* UserInterfaceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserInterfaceHelper.swift; path = ../../../../../../../Desktop/UserInterfaceHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
